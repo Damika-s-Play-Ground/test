@@ -19,15 +19,17 @@
  * @since : 11/15/20
  **/
 
+ import {validate} from './validation.js'
+
 /*===============================================================================
  * Global Variables
  *===============================================================================*/
 
-var txtId;
-var txtName;
-var txtAddress;
+export var txtId;
+export var txtName;
+export var txtAddress;
 var tblCustomers;
-var customers = [];
+export var customers = [];
 var selectedCustomer = null;
 var selectedRow = null;
 var pageSize = -1;
