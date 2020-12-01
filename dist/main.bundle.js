@@ -1,3 +1,60 @@
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/scss/style.scss":
+/*!*****************************!*\
+  !*** ./src/scss/style.scss ***!
+  \*****************************/
+/*! namespace exports */
+/*! exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! namespace exports */
+/*! exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _js_customer_ctrl_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/customer-ctrl.js */ "./src/js/customer-ctrl.js");
+/* harmony import */ var _scss_style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/style.scss */ "./src/scss/style.scss");
+
+
+
+/***/ }),
+
+/***/ "./src/js/customer-ctrl.js":
+/*!*********************************!*\
+  !*** ./src/js/customer-ctrl.js ***!
+  \*********************************/
+/*! namespace exports */
+/*! export customers [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export txtAddress [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export txtId [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export txtName [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "txtId": () => /* binding */ txtId,
+/* harmony export */   "txtName": () => /* binding */ txtName,
+/* harmony export */   "txtAddress": () => /* binding */ txtAddress,
+/* harmony export */   "customers": () => /* binding */ customers
+/* harmony export */ });
+/* harmony import */ var _validation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validation.js */ "./src/js/validation.js");
 /*
  *             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
  *                     Version 2, December 2004
@@ -19,17 +76,17 @@
  * @since : 11/15/20
  **/
 
- import {validate} from './validation.js'
+ 
 
 /*===============================================================================
  * Global Variables
  *===============================================================================*/
 
-export var txtId;
-export var txtName;
-export var txtAddress;
+var txtId;
+var txtName;
+var txtAddress;
 var tblCustomers;
-export var customers = [];
+var customers = [];
 var selectedCustomer = null;
 var selectedRow = null;
 var pageSize = -1;
@@ -98,7 +155,8 @@ function handleClickEventDelegation(event) {
 }
 
 function handleSave(event) {
-    if (!validate()) {
+    // throw new Error("Pissu Hadey!!");
+    if (!(0,_validation_js__WEBPACK_IMPORTED_MODULE_0__.validate)()) {
         return;
     }
 
@@ -289,8 +347,11 @@ function addCustomersToTable(startIndex, endIndex) {
         row.insertCell(0).innerText = customers[i].id;
         row.insertCell(1).innerText = customers[i].name;
         row.insertCell(2).innerText = customers[i].address;
-        row.insertCell(3).innerHTML = '<div class="trash" onclick="handleDelete(event)"></div>';
+        row.insertCell(3).innerHTML = '<div class="trash"></div>';
     }
+    document.querySelectorAll(".trash").forEach(function(trash){
+        trash.addEventListener('click',handleDelete);
+    });
 }
 
 function toggleBackwardForwardDisability(page) {
@@ -333,7 +394,7 @@ function handleSelection(event) {
     });
 }
 
-function handleDelete(event) {
+window.handleDelete=function(event) {
 
     if (confirm("Are you sure whether you want to delete this customer?")) {
 
@@ -362,3 +423,159 @@ function showOrHideTFoot() {
 function handleInput(event) {
     this.classList.remove('is-invalid');
 }
+
+/***/ }),
+
+/***/ "./src/js/validation.js":
+/*!******************************!*\
+  !*** ./src/js/validation.js ***!
+  \******************************/
+/*! namespace exports */
+/*! export validate [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "validate": () => /* binding */ validate
+/* harmony export */ });
+/* harmony import */ var _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./customer-ctrl */ "./src/js/customer-ctrl.js");
+/*
+ *             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ *                     Version 2, December 2004
+ *
+ *  Copyright (C) 2020 IJSE. All Rights Reserved.
+ *
+ *  Everyone is permitted to copy and distribute verbatim or modified
+ *  copies of this license document, and changing it is allowed as long
+ *  as the name is changed.
+ *
+ *             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ *    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ *
+ *   0. You just DO WHAT THE FUCK YOU WANT TO.
+ */
+
+/**
+ * @author : Ranjith Suranga <suranga@ijse.lk>
+ * @since : 11/15/20
+ **/
+
+ 
+/*===============================================================================
+ * Functions
+ *===============================================================================*/
+
+function validate() {
+    /* Object Literal {}, Array Literal [], RegExp Literal /expression/ */
+    /* new Object(), new Array(), new RegExp() */
+
+    var regExp = null;
+    var validated = true;
+
+    _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtId.classList.remove('is-invalid');
+    _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtName.classList.remove('is-invalid');
+    _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtAddress.classList.remove('is-invalid');
+
+    if (_customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtAddress.value.trim().length < 3) {
+        _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtAddress.classList.add('is-invalid');
+        _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtAddress.select();
+        validated = false;
+    }
+
+    regExp = /^[A-Za-z][A-Za-z .]{3,}$/;
+    if (!regExp.test(_customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtName.value)) {
+        _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtName.classList.add('is-invalid');
+        _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtName.select();
+        validated = false;
+    }
+
+    regExp = /^C\d{3}$/;
+    if (!regExp.test(_customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtId.value)) {
+        _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtId.classList.add('is-invalid');
+        document.getElementById('helper-txt-id').classList.remove('text-muted');
+        document.getElementById('helper-txt-id').classList.add('invalid-feedback');
+        _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtId.select();
+        validated = false;
+    }
+
+    /* Let's find whether duplicate ids are there */
+    if (_customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.customers.findIndex(function (c) {
+        return c.id === _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtId.value
+    }) !== -1) {
+        alert("Duplicate Customer IDs are not allowed");
+        _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtId.classList.add('is-invalid');
+        document.getElementById('helper-txt-id').classList.remove('text-muted');
+        document.getElementById('helper-txt-id').classList.add('invalid-feedback');
+        _customer_ctrl__WEBPACK_IMPORTED_MODULE_0__.txtId.select();
+        validated = false;
+    }
+
+    return validated;
+}
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		if(__webpack_module_cache__[moduleId]) {
+/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	// startup
+/******/ 	// Load entry module
+/******/ 	__webpack_require__("./src/index.js");
+/******/ 	// This entry module used 'exports' so it can't be inlined
+/******/ })()
+;

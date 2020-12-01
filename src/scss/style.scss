@@ -18,7 +18,10 @@
  * @author : Ranjith Suranga <suranga@ijse.lk>
  * @since : 11/15/20
 **/
-
+// import './node_modules/bootstrap/scss/bootstrap.scss'
+@import 'bootstrap';
+// @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 /*===============================================================================
@@ -38,6 +41,7 @@ body {
   min-height: 100%;
   position: relative;
   padding-bottom: 50px;
+  background-color: lightcyan;
 }
 
 /*===============================================================================
