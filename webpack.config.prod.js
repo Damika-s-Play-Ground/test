@@ -5,7 +5,8 @@ const superConfig =require('./webpack.config');
 
 module.exports = merge(superConfig ,{
     output:{
-        filename: 'main.[contenthash].bundle.js'
+        filename: 'main.[contenthash].bundle.js',
+        path: __dirname+'/docs'
     },
     plugins: [
         new CleanWebpackPlugin(),
